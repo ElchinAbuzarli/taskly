@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taskly — App</title>
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ======== TOPBAR ======== -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">☰</button>
+      <a href="index.html" class="logo"><span class="logo-icon">✦</span> Taskly</a>
+    </div>
+    <div class="topbar-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search tasks, docs, and more..." id="searchInput" />
+      <kbd>⌘K</kbd>
+    </div>
+    <div class="topbar-right">
+      <button class="icon-btn" title="Notifications" id="notifBtn">
+        🔔
+        <span class="notif-badge">3</span>
+      </button>
+      <div class="user-avatar" title="Your profile">EC</div>
+    </div>
+  </header>
+
+  <!-- ======== NOTIFICATIONS PANEL ======== -->
+  <div class="notif-panel" id="notifPanel">
+    <div class="notif-header">
+      <strong>Notifications</strong>
+      <button class="notif-close" id="notifClose">✕</button>
+    </div>
+    <div class="notif-list">
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div>
+          <div class="notif-title">Sara assigned "API integration" to you</div>
+          <div class="notif-time">2 min ago</div>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div>
+          <div class="notif-title">Task "Design landing page" is due tomorrow</div>
+          <div class="notif-time">1 hour ago</div>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div>
+          <div class="notif-title">Alex commented on "Build onboarding flow"</div>
+          <div class="notif-time">3 hours ago</div>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot muted"></div>
+        <div>
+          <div class="notif-title">Project "Brand Refresh" was archived</div>
+          <div class="notif-time">Yesterday</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== LAYOUT ======== -->
+  <div class="layout" id="layout">
+
+    <!-- ======== SIDEBAR ======== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <div class="workspace-header">
+          <div class="workspace-icon">🏢</div>
+          <div>
+            <div class="workspace-name">Acme Corp</div>
+            <div class="workspace-plan">Pro Plan</div>
+          </div>
+          <button class="ws-chevron">⌄</button>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item" data-page="home" href="#">
+          <span class="nav-icon">🏠</span> Home
+        </a>
+        <a class="nav-item active" data-page="board" href="#">
+          <span class="nav-icon">✅</span> My Tasks
+          <span class="nav-badge">5</span>
+        </a>
+        <a class="nav-item" data-page="docs" href="#">
+          <span class="nav-icon">📝</span> Docs
+        </a>
+        <a class="nav-item" data-page="settings" href="#">
+          <span class="nav-icon">⚙️</span> Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-section-label">Projects</div>
+      <nav class="sidebar-nav">
+        <a class="nav-item project-item active-project" data-project="q2" href="#">
+          <span class="project-dot indigo"></span>
+          Q2 Product Launch
+          <span class="nav-badge">8</span>
+        </a>
+        <a class="nav-item project-item" data-project="brand" href="#">
+          <span class="project-dot pink"></span>
+          Brand Refresh
+        </a>
+        <a class="nav-item project-item" data-project="infra" href="#">
+          <span class="project-dot green"></span>
+          Infra Upgrade
+          <span class="nav-badge">2</span>
+        </a>
+        <a class="nav-item new-project" id="newProjectBtn" href="#">
+          <span class="nav-icon">＋</span> New Project
+        </a>
+      </nav>
+
+      <div class="sidebar-section-label">Teammates</div>
+      <div class="teammates">
+        <div class="teammate"><span class="tm-avatar" style="--c:#818cf8">JM</span> Jordan M.</div>
+        <div class="teammate"><span class="tm-avatar" style="--c:#f472b6">SR</span> Sofia R.</div>
+        <div class="teammate"><span class="tm-avatar" style="--c:#34d399">AK</span> Alex K.</div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <a href="index.html" class="btn-back">← Back to website</a>
+      </div>
+    </aside>
+
+    <!-- ======== MAIN CONTENT ======== -->
+    <main class="main" id="main">
+
+      <!-- ========= HOME PAGE ========= -->
+      <div class="page" id="page-home" style="display:none">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Good morning, Elchin 👋</h1>
+            <p class="page-subtitle">Here's what's happening today.</p>
+          </div>
+        </div>
+        <div class="home-grid">
+          <div class="home-card">
+            <div class="home-card-title">My Open Tasks</div>
+            <div class="home-stat">5</div>
+            <div class="home-card-sub">3 due this week</div>
+          </div>
+          <div class="home-card">
+            <div class="home-card-title">In Progress</div>
+            <div class="home-stat indigo">2</div>
+            <div class="home-card-sub">Across 2 projects</div>
+          </div>
+          <div class="home-card">
+            <div class="home-card-title">Completed Today</div>
+            <div class="home-stat green">3</div>
+            <div class="home-card-sub">Great work!</div>
+          </div>
+        </div>
+        <div class="home-section-title">Recent Activity</div>
+        <div class="activity-feed">
+          <div class="activity-item">
+            <div class="activity-avatar" style="--c:#818cf8">JM</div>
+            <div class="activity-content">
+              <strong>Jordan M.</strong> completed "Set up CI/CD pipeline"
+              <div class="activity-time">10 min ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-avatar" style="--c:#f472b6">SR</div>
+            <div class="activity-content">
+              <strong>Sofia R.</strong> created a new doc "Q2 Design Specs"
+              <div class="activity-time">42 min ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-avatar" style="--c:#6366f1">EC</div>
+            <div class="activity-content">
+              <strong>You</strong> moved "Build onboarding flow" to In Progress
+              <div class="activity-time">1 hour ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-avatar" style="--c:#34d399">AK</div>
+            <div class="activity-content">
+              <strong>Alex K.</strong> commented on "API integration"
+              <div class="activity-time">2 hours ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========= BOARD / LIST / CALENDAR PAGE ========= -->
+      <div class="page" id="page-board">
+        <div class="page-header">
+          <div>
+            <div class="page-breadcrumb">Projects / Q2 Product Launch</div>
+            <h1 class="page-title">Q2 Product Launch</h1>
+          </div>
+          <div class="page-actions">
+            <button class="btn-sm btn-ghost-sm" id="filterBtn">⊟ Filter</button>
+            <button class="btn-sm btn-ghost-sm">⊕ Group by</button>
+            <button class="btn-sm btn-primary-sm" id="newTaskBtn">＋ New Task</button>
+          </div>
+        </div>
+
+        <!-- View Tabs -->
+        <div class="view-tabs">
+          <button class="view-tab active" data-view="board">
+            ⊞ Board
+          </button>
+          <button class="view-tab" data-view="list">
+            ≡ List
+          </button>
+          <button class="view-tab" data-view="calendar">
+            📅 Calendar
+          </button>
+        </div>
+
+        <!-- ---- BOARD VIEW ---- -->
+        <div class="view-pane" id="view-board">
+          <div class="kanban-board" id="kanbanBoard">
+            <div class="kanban-col" data-status="todo">
+              <div class="col-header">
+                <div class="col-title">
+                  <span class="col-dot gray"></span>
+                  To Do
+                  <span class="col-count" id="count-todo">3</span>
+                </div>
+                <button class="col-add" data-status="todo">＋</button>
+              </div>
+              <div class="col-cards" id="col-todo"></div>
+            </div>
+            <div class="kanban-col" data-status="inprogress">
+              <div class="col-header">
+                <div class="col-title">
+                  <span class="col-dot yellow"></span>
+                  In Progress
+                  <span class="col-count" id="count-inprogress">2</span>
+                </div>
+                <button class="col-add" data-status="inprogress">＋</button>
+              </div>
+              <div class="col-cards" id="col-inprogress"></div>
+            </div>
+            <div class="kanban-col" data-status="review">
+              <div class="col-header">
+                <div class="col-title">
+                  <span class="col-dot blue"></span>
+                  In Review
+                  <span class="col-count" id="count-review">1</span>
+                </div>
+                <button class="col-add" data-status="review">＋</button>
+              </div>
+              <div class="col-cards" id="col-review"></div>
+            </div>
+            <div class="kanban-col" data-status="done">
+              <div class="col-header">
+                <div class="col-title">
+                  <span class="col-dot green"></span>
+                  Done
+                  <span class="col-count" id="count-done">2</span>
+                </div>
+                <button class="col-add" data-status="done">＋</button>
+              </div>
+              <div class="col-cards" id="col-done"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- LIST VIEW ---- -->
+        <div class="view-pane" id="view-list" style="display:none">
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th style="width:32px"></th>
+                <th>Task</th>
+                <th>Assignee</th>
+                <th>Priority</th>
+                <th>Due Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="listBody"></tbody>
+          </table>
+        </div>
+
+        <!-- ---- CALENDAR VIEW ---- -->
+        <div class="view-pane" id="view-calendar" style="display:none">
+          <div class="calendar-wrap">
+            <div class="calendar-header">
+              <button class="cal-nav" id="calPrev">‹</button>
+              <div class="cal-month-year" id="calMonthYear">May 2025</div>
+              <button class="cal-nav" id="calNext">›</button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========= DOCS PAGE ========= -->
+      <div class="page" id="page-docs" style="display:none">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Docs</h1>
+            <p class="page-subtitle">Your notes and documentation.</p>
+          </div>
+          <button class="btn-sm btn-primary-sm" id="newDocBtn">＋ New Doc</button>
+        </div>
+
+        <div class="docs-layout">
+          <!-- Doc list -->
+          <div class="docs-list" id="docsList">
+            <div class="doc-list-item active" data-doc="0">
+              <div class="doc-list-icon">📄</div>
+              <div>
+                <div class="doc-list-title">Q2 Design Specs</div>
+                <div class="doc-list-meta">Updated 42 min ago</div>
+              </div>
+            </div>
+            <div class="doc-list-item" data-doc="1">
+              <div class="doc-list-icon">📄</div>
+              <div>
+                <div class="doc-list-title">Team Onboarding Guide</div>
+                <div class="doc-list-meta">Updated 2 days ago</div>
+              </div>
+            </div>
+            <div class="doc-list-item" data-doc="2">
+              <div class="doc-list-icon">📄</div>
+              <div>
+                <div class="doc-list-title">API Documentation</div>
+                <div class="doc-list-meta">Updated last week</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Editor -->
+          <div class="doc-editor" id="docEditor">
+            <div class="doc-toolbar">
+              <button class="toolbar-btn" data-cmd="bold" title="Bold"><strong>B</strong></button>
+              <button class="toolbar-btn" data-cmd="italic" title="Italic"><em>I</em></button>
+              <button class="toolbar-btn" data-cmd="underline" title="Underline"><u>U</u></button>
+              <div class="toolbar-divider"></div>
+              <button class="toolbar-btn" data-cmd="h1" title="Heading 1">H1</button>
+              <button class="toolbar-btn" data-cmd="h2" title="Heading 2">H2</button>
+              <div class="toolbar-divider"></div>
+              <button class="toolbar-btn" data-cmd="insertUnorderedList" title="Bullet list">• List</button>
+              <button class="toolbar-btn" data-cmd="insertOrderedList" title="Numbered list">1. List</button>
+              <div class="toolbar-divider"></div>
+              <button class="toolbar-btn" data-cmd="link" title="Insert link">🔗</button>
+            </div>
+            <input class="doc-title-input" id="docTitleInput" type="text" value="Q2 Design Specs" />
+            <div class="doc-content" id="docContent" contenteditable="true">
+              <h2>Overview</h2>
+              <p>This document outlines the design specifications for the Q2 product launch. All design assets should adhere to the updated brand guidelines introduced in March 2025.</p>
+              <h2>Design Principles</h2>
+              <ul>
+                <li><strong>Clarity first</strong> — Every screen should have one clear primary action.</li>
+                <li><strong>Consistent spacing</strong> — Use 8px grid throughout the product.</li>
+                <li><strong>Accessible colors</strong> — All color combinations must meet WCAG AA.</li>
+              </ul>
+              <h2>Key Deliverables</h2>
+              <ol>
+                <li>Landing page redesign (due May 10)</li>
+                <li>Onboarding flow redesign (due May 17)</li>
+                <li>Dashboard v2 (due May 24)</li>
+              </ol>
+              <p>For questions, reach out to Sofia R. on Slack or leave a comment below.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========= SETTINGS PAGE ========= -->
+      <div class="page" id="page-settings" style="display:none">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Settings</h1>
+            <p class="page-subtitle">Manage your workspace and account.</p>
+          </div>
+        </div>
+        <div class="settings-grid">
+          <div class="settings-sidebar">
+            <div class="settings-nav-item active" data-tab="profile">👤 Profile</div>
+            <div class="settings-nav-item" data-tab="workspace">🏢 Workspace</div>
+            <div class="settings-nav-item" data-tab="members">👥 Members</div>
+            <div class="settings-nav-item" data-tab="billing">💳 Billing</div>
+            <div class="settings-nav-item" data-tab="api">🔗 API</div>
+          </div>
+          <div class="settings-content">
+            <div class="settings-tab" id="settings-profile">
+              <h3>Profile</h3>
+              <div class="settings-form">
+                <div class="form-row">
+                  <label>Full name</label>
+                  <input type="text" value="Elchin Abuzarli" />
+                </div>
+                <div class="form-row">
+                  <label>Email</label>
+                  <input type="email" value="elchin@taskly.app" />
+                </div>
+                <div class="form-row">
+                  <label>Role</label>
+                  <input type="text" value="Admin" readonly />
+                </div>
+                <button class="btn-sm btn-primary-sm" style="margin-top:8px">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ======== TASK MODAL ======== -->
+  <div class="modal-overlay" id="taskModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">New Task</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Task title</label>
+          <input type="text" id="taskTitleInput" placeholder="Enter task title..." class="form-input" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="taskDescInput" placeholder="Add a description..." class="form-input form-textarea" rows="3"></textarea>
+        </div>
+        <div class="form-row-inline">
+          <div class="form-group flex-1">
+            <label>Assignee</label>
+            <select id="taskAssigneeInput" class="form-input">
+              <option value="">Unassigned</option>
+              <option value="Elchin A.">Elchin A. (you)</option>
+              <option value="Jordan M.">Jordan M.</option>
+              <option value="Sofia R.">Sofia R.</option>
+              <option value="Alex K.">Alex K.</option>
+            </select>
+          </div>
+          <div class="form-group flex-1">
+            <label>Priority</label>
+            <select id="taskPriorityInput" class="form-input">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row-inline">
+          <div class="form-group flex-1">
+            <label>Due date</label>
+            <input type="date" id="taskDueDateInput" class="form-input" />
+          </div>
+          <div class="form-group flex-1">
+            <label>Status</label>
+            <select id="taskStatusInput" class="form-input">
+              <option value="todo">To Do</option>
+              <option value="inprogress">In Progress</option>
+              <option value="review">In Review</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Subtasks</label>
+          <div id="subtaskList" class="subtask-list"></div>
+          <button class="btn-link" id="addSubtask">＋ Add subtask</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm btn-ghost-sm" id="modalCancel">Cancel</button>
+        <button class="btn-sm btn-primary-sm" id="modalSave">Create Task</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taskly — Work smarter, together</title>
+  <link rel="stylesheet" href="css/landing.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">✦</span> Taskly
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="app.html" class="btn btn-ghost">Log in</a>
+        <a href="app.html" class="btn btn-primary">Get Started Free</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="badge">Now in public beta ✦</div>
+      <h1 class="hero-headline">
+        The task manager that<br />
+        <span class="accent">actually keeps up</span> with you.
+      </h1>
+      <p class="hero-sub">
+        Taskly combines tasks, docs, and team collaboration in one clean workspace.
+        No clutter. No learning curve. Just work.
+      </p>
+      <div class="hero-cta">
+        <a href="app.html" class="btn btn-primary btn-lg">Get Started Free</a>
+        <a href="app.html" class="btn btn-outline btn-lg">See it in action →</a>
+      </div>
+      <p class="hero-note">Free forever on the Starter plan. No credit card required.</p>
+
+      <!-- App preview mockup -->
+      <div class="hero-preview">
+        <div class="preview-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="preview-url">taskly.app/workspace</span>
+        </div>
+        <div class="preview-body">
+          <div class="preview-sidebar">
+            <div class="preview-logo">✦ Taskly</div>
+            <div class="preview-nav-item active">Home</div>
+            <div class="preview-nav-item">My Tasks</div>
+            <div class="preview-nav-item">Projects</div>
+            <div class="preview-nav-item">Docs</div>
+          </div>
+          <div class="preview-main">
+            <div class="preview-header">
+              <div class="preview-title">Q2 Product Launch</div>
+              <div class="preview-tabs">
+                <span class="preview-tab active">Board</span>
+                <span class="preview-tab">List</span>
+                <span class="preview-tab">Calendar</span>
+              </div>
+            </div>
+            <div class="preview-columns">
+              <div class="preview-col">
+                <div class="col-head todo">To Do</div>
+                <div class="preview-card">Design landing page</div>
+                <div class="preview-card">Write blog post</div>
+              </div>
+              <div class="preview-col">
+                <div class="col-head inprogress">In Progress</div>
+                <div class="preview-card highlight">Build onboarding flow</div>
+                <div class="preview-card">API integration</div>
+              </div>
+              <div class="preview-col">
+                <div class="col-head done">Done</div>
+                <div class="preview-card muted">Set up CI/CD</div>
+                <div class="preview-card muted">Brand guidelines</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS -->
+  <section class="logos">
+    <div class="container">
+      <p class="logos-label">Trusted by teams at</p>
+      <div class="logos-row">
+        <span class="logo-brand">Stripe</span>
+        <span class="logo-brand">Linear</span>
+        <span class="logo-brand">Vercel</span>
+        <span class="logo-brand">Figma</span>
+        <span class="logo-brand">Notion</span>
+        <span class="logo-brand">Loom</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything your team needs,<br />nothing it doesn't.</h2>
+      <p class="section-sub">Built for focus. Taskly strips away the noise so your team can move fast.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">☑</div>
+          <h3>Tasks &amp; Subtasks</h3>
+          <p>Break down any project into granular tasks. Nest subtasks infinitely, assign owners, set due dates, and track priority — all in one place.</p>
+          <ul class="feature-list">
+            <li>Inline subtask creation</li>
+            <li>Priority labels (Low, Medium, High, Urgent)</li>
+            <li>Due dates &amp; reminders</li>
+            <li>Task comments &amp; attachments</li>
+          </ul>
+        </div>
+
+        <div class="feature-card featured">
+          <div class="feature-badge">Most loved</div>
+          <div class="feature-icon">👥</div>
+          <h3>Team Collaboration</h3>
+          <p>Invite teammates, assign tasks, and get real-time updates. Your whole team stays in sync without the endless status meetings.</p>
+          <ul class="feature-list">
+            <li>Real-time multiplayer editing</li>
+            <li>@mentions &amp; notifications</li>
+            <li>Role-based access control</li>
+            <li>Activity feed per project</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Notes &amp; Docs</h3>
+          <p>Write specs, meeting notes, and wikis alongside your tasks. Docs live in the same workspace — no context switching to another tool.</p>
+          <ul class="feature-list">
+            <li>Rich text editor</li>
+            <li>Link docs to tasks</li>
+            <li>Version history</li>
+            <li>Share with external guests</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Secondary features -->
+      <div class="secondary-features">
+        <div class="secondary-feature">
+          <span class="sf-icon">📅</span>
+          <div>
+            <strong>Calendar View</strong>
+            <p>See deadlines on a calendar timeline.</p>
+          </div>
+        </div>
+        <div class="secondary-feature">
+          <span class="sf-icon">🔍</span>
+          <div>
+            <strong>Global Search</strong>
+            <p>Find any task, doc, or comment instantly.</p>
+          </div>
+        </div>
+        <div class="secondary-feature">
+          <span class="sf-icon">🔔</span>
+          <div>
+            <strong>Smart Notifications</strong>
+            <p>Only get pinged when it matters.</p>
+          </div>
+        </div>
+        <div class="secondary-feature">
+          <span class="sf-icon">🔗</span>
+          <div>
+            <strong>API Access</strong>
+            <p>Connect Taskly to your existing stack.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Simple, transparent pricing.</h2>
+      <p class="section-sub">Start free. Scale as you grow. Cancel anytime.</p>
+
+      <div class="pricing-grid">
+        <!-- Free -->
+        <div class="pricing-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">
+            <span class="price-amount">$0</span>
+            <span class="price-period">/month</span>
+          </div>
+          <p class="plan-desc">Perfect for individuals and small side projects.</p>
+          <a href="app.html" class="btn btn-outline btn-block">Get Started Free</a>
+          <ul class="plan-features">
+            <li>✓ Up to 3 projects</li>
+            <li>✓ 1 user</li>
+            <li>✓ Tasks &amp; subtasks</li>
+            <li>✓ Basic docs editor</li>
+            <li>✓ List &amp; Board views</li>
+            <li class="disabled">✗ Priority support</li>
+            <li class="disabled">✗ Calendar view</li>
+            <li class="disabled">✗ API access</li>
+          </ul>
+        </div>
+
+        <!-- Pro -->
+        <div class="pricing-card pricing-featured">
+          <div class="plan-badge">Most Popular</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">
+            <span class="price-amount">$12</span>
+            <span class="price-period">/month</span>
+          </div>
+          <p class="plan-desc">For growing teams that need more power and flexibility.</p>
+          <a href="app.html" class="btn btn-primary btn-block">Start Free Trial</a>
+          <ul class="plan-features">
+            <li>✓ Unlimited projects</li>
+            <li>✓ Up to 10 users</li>
+            <li>✓ Everything in Free</li>
+            <li>✓ Calendar view</li>
+            <li>✓ Priority support</li>
+            <li>✓ File attachments (5GB)</li>
+            <li>✓ Guest access</li>
+            <li class="disabled">✗ API access</li>
+          </ul>
+        </div>
+
+        <!-- Business -->
+        <div class="pricing-card">
+          <div class="plan-name">Business</div>
+          <div class="plan-price">
+            <span class="price-amount">$35</span>
+            <span class="price-period">/month</span>
+          </div>
+          <p class="plan-desc">For organizations that need control, scale, and integrations.</p>
+          <a href="app.html" class="btn btn-outline btn-block">Contact Sales</a>
+          <ul class="plan-features">
+            <li>✓ Unlimited everything</li>
+            <li>✓ Unlimited users</li>
+            <li>✓ Everything in Pro</li>
+            <li>✓ Admin controls &amp; audit logs</li>
+            <li>✓ API access</li>
+            <li>✓ SSO / SAML</li>
+            <li>✓ Custom integrations</li>
+            <li>✓ Dedicated support</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="pricing-note">All plans include a 14-day free trial. No credit card required to start.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">Teams love Taskly.</h2>
+      <p class="section-sub">Don't take our word for it — here's what our users say.</p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"We switched from Jira to Taskly three months ago and haven't looked back. Setup took 20 minutes. Onboarding the team took one afternoon. It just works."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JM</div>
+            <div>
+              <div class="author-name">Jordan Mitchell</div>
+              <div class="author-role">Head of Engineering, Payvault</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Finally a task manager that doesn't feel like it was designed by a committee. The docs + tasks integration alone saves me an hour every day."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SR</div>
+            <div>
+              <div class="author-name">Sofia Reyes</div>
+              <div class="author-role">Product Designer, Lunarpixel</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"We run a 50-person remote team and Taskly keeps everyone aligned. The calendar view and real-time collaboration are game changers for async work."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AK</div>
+            <div>
+              <div class="author-name">Alex Kim</div>
+              <div class="author-role">CTO, Brightloop</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <h2>Ready to get started?</h2>
+      <p>Join thousands of teams already using Taskly to ship faster.</p>
+      <a href="app.html" class="btn btn-white btn-lg">Get Started Free — It's Free</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">✦</span> Taskly</div>
+        <p>Work smarter, together.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <a href="#">Features</a>
+          <a href="#">Pricing</a>
+          <a href="#">Changelog</a>
+          <a href="#">Roadmap</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Resources</div>
+          <a href="#">Docs</a>
+          <a href="#">API</a>
+          <a href="#">Status</a>
+          <a href="#">Support</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Security</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© 2025 Taskly, Inc. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="#">Twitter</a>
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
