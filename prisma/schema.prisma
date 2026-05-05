@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Feature {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  code        String        @unique
+  key         String?
+  name        String
+  description String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  plans       PlanFeature[]
+}
+
+model Plan {
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  code          String         @unique
+  name          String
+  monthlyPrice  Int
+  annualPrice   Int?
+  isActive      Boolean        @default(true)
+  stripePriceId String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  features      PlanFeature[]
+  subscriptions Subscription[]
+}
+
+model PlanFeature {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  planId     String   @db.ObjectId
+  featureId  String   @db.ObjectId
+  included   Boolean  @default(true)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  plan    Plan    @relation(fields: [planId], references: [id])
+  feature Feature @relation(fields: [featureId], references: [id])
+
+  @@unique([planId, featureId])
+}
+
+model Workspace {
+  id            String            @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  currentPlanId String?           @db.ObjectId
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  subscription  Subscription?
+  members       WorkspaceMember[]
+}
+
+model Subscription {
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  workspaceId          String   @unique @db.ObjectId
+  planId               String   @db.ObjectId
+  stripeSubscriptionId String?  @unique
+  status               String
+  currentPeriodEnd     DateTime?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  plan      Plan      @relation(fields: [planId], references: [id])
+}
+
+model User {
+  id           String            @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String            @unique
+  passwordHash String
+  isAdmin      Boolean           @default(false)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  sessions     Session[]
+  memberships  WorkspaceMember[]
+}
+
+model WorkspaceMember {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String    @db.ObjectId
+  workspaceId String    @db.ObjectId
+  role        String    @default("owner")
+  createdAt   DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+
+  @@unique([userId, workspaceId])
+}
+
+model Session {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  token     String   @unique
+  userId    String   @db.ObjectId
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id])
+}
