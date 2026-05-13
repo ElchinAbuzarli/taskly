@@ -22,6 +22,16 @@ function extractErrorMessage(error: unknown, fallback: string) {
   return fallback;
 }
 
+async function readJsonSafe(res: Response) {
+  const raw = await res.text();
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as { error?: unknown; user?: AuthUser };
+  } catch {
+    return null;
+  }
+}
+
 export default function AuthPage() {
   const router = useRouter();
   const [user, setUser] = useState<AuthUser | null>(null);
@@ -38,14 +48,15 @@ export default function AuthPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(registerForm),
     });
-    const json = await res.json();
+    const json = await readJsonSafe(res);
     if (!res.ok) {
       if (res.status === 409) {
         setLoginForm((s) => ({ ...s, email: registerForm.email }));
         return setError('Bu email artiq qeydiyyatdadir. Login bolmesinden daxil olun.');
       }
-      return setError(extractErrorMessage(json.error, 'Register failed'));
+      return setError(extractErrorMessage(json?.error, 'Register failed'));
     }
+    if (!json?.user) return setError('Register failed');
     setUser(json.user);
     setRegisterForm(initialRegister);
     setMessage('Register successful.');
@@ -59,8 +70,9 @@ export default function AuthPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loginForm),
     });
-    const json = await res.json();
-    if (!res.ok) return setError(extractErrorMessage(json.error, 'Login failed'));
+    const json = await readJsonSafe(res);
+    if (!res.ok) return setError(extractErrorMessage(json?.error, 'Login failed'));
+    if (!json?.user) return setError('Login failed');
     const loggedInUser = json.user as AuthUser;
     setUser(loggedInUser);
     setLoginForm(initialLogin);
